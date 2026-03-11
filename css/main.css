@@ -26,9 +26,7 @@ h1, h2, h3, h4, h5, h6 {
     background-clip: text;
 }
 
-/* ============================================
-   HERO SECTION - ИСПРАВЛЕНО ЦЕНТРИРОВАНИЕ
-   ============================================ */
+/* Hero Section */
 .hero-section {
     position: relative;
     min-height: 100vh;
@@ -37,7 +35,7 @@ h1, h2, h3, h4, h5, h6 {
     justify-content: center;
     text-align: center;
     padding: 60px 20px;
-    padding-bottom: 120px; /* ✅ Отступ для стрелки */
+    padding-bottom: 120px;
     overflow: hidden;
 }
 
@@ -56,7 +54,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .hero-content {
     position: relative;
-    z-index: 10; /* ✅ Выше стрелки */
+    z-index: 10;
     max-width: 800px;
     width: 100%;
     margin: 0 auto;
@@ -144,17 +142,15 @@ h1, h2, h3, h4, h5, h6 {
     opacity: 0.7;
 }
 
-/* ============================================
-   SCROLL INDICATOR - ИСПРАВЛЕНО ПОЗИЦИОНИРОВАНИЕ
-   ============================================ */
+/* Scroll Indicator */
 .scroll-indicator {
-    position: absolute; /* ✅ Абсолютно относительно hero-section */
-    bottom: 30px; /* ✅ Отступ от низа */
+    position: absolute;
+    bottom: 30px;
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
     opacity: 0.7;
-    z-index: 5; /* ✅ Ниже контента (z-index: 10) */
+    z-index: 5;
     animation: bounce 2s infinite;
 }
 
@@ -340,9 +336,9 @@ h1, h2, h3, h4, h5, h6 {
 
 .tariffs-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 30px;
-    max-width: 1200px;
+    max-width: 900px;
     margin: 0 auto;
 }
 
@@ -426,13 +422,18 @@ h1, h2, h3, h4, h5, h6 {
 
 .tariff-features li,
 .tariff-bonuses li {
-    font-size: 15px;
-    padding: 10px 0;
+    font-size: 14px;
+    padding: 8px 0;
     border-bottom: 1px solid rgba(255,255,255,0.05);
+    line-height: 1.4;
 }
 
 .tariff-bonuses li:last-child {
     border-bottom: none;
+}
+
+.tariff-bonuses li strong {
+    color: #f093fb;
 }
 
 .tariff-price {
@@ -442,16 +443,11 @@ h1, h2, h3, h4, h5, h6 {
 
 .price-main {
     display: block;
-    font-size: 36px;
+    font-size: 42px;
     font-weight: 700;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-}
-
-.price-alt {
-    font-size: 16px;
-    opacity: 0.6;
 }
 
 /* FAQ Section */
@@ -482,7 +478,6 @@ h1, h2, h3, h4, h5, h6 {
     font-family: inherit;
 }
 
-
 .accordion-icon {
     font-size: 28px;
     color: #667eea;
@@ -501,7 +496,6 @@ h1, h2, h3, h4, h5, h6 {
     padding: 0 0 25px 0;
     opacity: 0.8;
     line-height: 1.8;
-    /* ✅ Важно для анимации */
     max-height: 0;
     overflow: hidden;
     transition: max-height 300ms ease, opacity 300ms ease;
@@ -511,10 +505,217 @@ h1, h2, h3, h4, h5, h6 {
     opacity: 1;
 }
 
-/* Reviews Section */
+/* Gallery Section */
 .reviews-section {
     background: #0a0a0a;
     padding: 80px 20px;
+}
+
+.reviews-subtitle {
+    text-align: center;
+    font-size: 18px;
+    opacity: 0.7;
+    margin-bottom: 50px;
+    color: #ffffff;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto 30px;
+}
+
+.gallery-item {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    cursor: pointer;
+    background: linear-gradient(145deg, #1a1a2e 0%, #16213e 100%);
+    border: 1px solid rgba(102, 126, 234, 0.2);
+    transition: all 0.3s ease;
+    aspect-ratio: 4/3;
+}
+
+.gallery-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+    border-color: rgba(102, 126, 234, 0.5);
+}
+
+.gallery-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover .gallery-img {
+    transform: scale(1.05);
+}
+
+.gallery-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(102, 126, 234, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gallery-item:hover .gallery-overlay {
+    opacity: 1;
+}
+
+.gallery-icon {
+    font-size: 40px;
+    color: #ffffff;
+    animation: pulse 1.5s infinite;
+}
+
+.reviews-note {
+    text-align: center;
+    font-size: 14px;
+    opacity: 0.5;
+    color: #ffffff;
+}
+
+/* Lightbox */
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.lightbox.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.lightbox-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.lightbox-img {
+    max-width: 100%;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: 10px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.lightbox-caption {
+    color: #ffffff;
+    font-size: 16px;
+    margin-top: 15px;
+    text-align: center;
+    opacity: 0.8;
+}
+
+.lightbox-close,
+.lightbox-prev,
+.lightbox-next {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 10001;
+}
+
+.lightbox-close:hover,
+.lightbox-prev:hover,
+.lightbox-next:hover {
+    background: rgba(102, 126, 234, 0.8);
+    transform: scale(1.1);
+}
+
+.lightbox-close svg,
+.lightbox-prev svg,
+.lightbox-next svg {
+    width: 24px;
+    height: 24px;
+    stroke: #ffffff;
+}
+
+.lightbox-close {
+    top: 20px;
+    right: 20px;
+}
+
+.lightbox-prev {
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.lightbox-next {
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.lightbox-counter {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #ffffff;
+    font-size: 14px;
+    opacity: 0.7;
+}
+
+@media (max-width: 640px) {
+    .lightbox-prev,
+    .lightbox-next {
+        display: none;
+    }
+    
+    .gallery-grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+@keyframes lightboxFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.lightbox.active .lightbox-img {
+    animation: lightboxFadeIn 0.3s ease;
 }
 
 /* Contact Section */
@@ -533,6 +734,19 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 20px;
     margin-bottom: 40px;
     opacity: 0.9;
+}
+
+.contact-email a,
+.footer-info a[href^="mailto:"] {
+    color: #667eea;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contact-email a:hover,
+.footer-info a[href^="mailto:"]:hover {
+    color: #f093fb;
+    text-decoration: underline;
 }
 
 /* Footer */
