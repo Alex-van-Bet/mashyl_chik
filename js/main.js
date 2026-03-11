@@ -1,10 +1,9 @@
 /**
- * MAIN APPLICATION - Без export
+ * MAIN APPLICATION
  */
 
 (function() {
     document.addEventListener('DOMContentLoaded', function() {
-        // Scroll animations
         var scrollElements = document.querySelectorAll('.scroll-animate');
         
         var observer = new IntersectionObserver(function(entries) {
@@ -19,7 +18,6 @@
             observer.observe(el);
         });
 
-        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -33,7 +31,6 @@
             });
         });
 
-        // Add animation classes
         var elements = document.querySelectorAll('.tariff-card, .accordion-item');
         elements.forEach(function(el, index) {
             el.classList.add('animate-slide-up');
@@ -42,7 +39,6 @@
     });
 })();
 
-// Cart functionality
 var Cart = (function() {
     function Cart() {
         this.items = [];

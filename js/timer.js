@@ -1,10 +1,8 @@
 /**
- * COUNTDOWN TIMER - ДО КОНЦА МЕСЯЦА
- * Без export - работает при открытии файла напрямую
+ * COUNTDOWN TIMER - ДО 13 МАРТА
  */
 
 (function() {
-    // Ждём загрузки DOM
     document.addEventListener('DOMContentLoaded', function() {
         var daysEl = document.getElementById('days');
         var hoursEl = document.getElementById('hours');
@@ -16,19 +14,29 @@
             return;
         }
 
-        // Получить дату конца текущего месяца
-        function getEndOfMonth() {
+        function getDeadline() {
             var now = new Date();
             var year = now.getFullYear();
             var month = now.getMonth();
-            // Последний день текущего месяца
-            var lastDay = new Date(year, month + 1, 0);
-            // Устанавливаем на 23:59:59
-            lastDay.setHours(23, 59, 59, 999);
-            return lastDay.getTime();
+            var day = now.getDate();
+            
+            // Если сегодня уже 13 марта или позже - ставим на следующий месяц
+            if (month === 2 && day >= 13) {
+                year = month === 11 ? year + 1 : year;
+                month = month === 11 ? 0 : month + 1;
+            }
+            
+            // Дата: 13 марта, 23:59:59
+            var deadline = new Date(year, 2, 12, 23, 59, 59, 999);
+            
+            if (deadline.getTime() < new Date().getTime()) {
+                deadline = new Date(year + 1, 2, 13, 23, 59, 59, 999);
+            }
+            
+            return deadline.getTime();
         }
 
-        var endDate = getEndOfMonth();
+        var endDate = getDeadline();
         var interval = null;
 
         function update() {
@@ -36,8 +44,7 @@
             var distance = endDate - now;
 
             if (distance < 0) {
-                // Перезапуск на следующий месяц
-                endDate = getEndOfMonth();
+                endDate = getDeadline();
                 return;
             }
 
@@ -56,11 +63,9 @@
             return num < 10 ? '0' + num : num.toString();
         }
 
-        // Запуск таймера
         update();
         interval = setInterval(update, 1000);
 
-        // Сохраняем интервал для остановки при необходимости
         window.timerInterval = interval;
     });
 })();
